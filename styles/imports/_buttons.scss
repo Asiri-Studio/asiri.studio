@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  svg {
+    &.left {
+      margin-right: 20px;
+    }
+    &.right {
+      margin-left: 20px;
+    }
+  }
+
+  &.large {
+    svg {
+      width: 100px;
+      height: auto;
+    }
+  }
+}
