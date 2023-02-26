@@ -9,21 +9,68 @@ textToAnimate.forEach((textWrapper) => {
 
 var heroLogo = document.querySelector("#hero .logoSVG").getBoundingClientRect();
 
-console.log(heroLogo.left, heroLogo.top);
+var logoMouseEnterAnimation = (el) => {
+  anime.remove(el);
+  anime
+    .timeline({ loop: false })
+    .add({
+      targets: el,
+      scale: 1.15,
+      translateY: -3,
+      duration: 460,
+      elasticity: 600,
+      easing: "easeOutBack",
+      delay: 120,
+    })
+    .add({
+      targets: el,
+      scale: 0.1,
+      translateY: -1,
+      rotate: -5,
+      duration: 460,
+      elasticity: 600,
+      easing: "easeOutBack",
+    })
+    .add({
+      targets: el,
+      rotate: -15,
+      translateY: 0,
+      duration: 260,
+      elasticity: 600,
+      opacity: [1, 0],
+      easing: "easeOutBack",
+    });
+};
 
-var heroCarousel = document.querySelector("#hero .carousel");
-var heroCarouselImages = document.querySelectorAll("#hero .carousel img");
+var logoMouseLeaveAnimation = (el) => {
+  anime.remove(el);
+  anime({
+    targets: el,
+    scale: [0.1, 1],
+    rotate: [-60, 0],
+    duration: 560,
+    elasticity: 600,
+    opacity: [0, 1],
+    easing: "easeOutBack",
+    delay: 250,
+  });
+};
 
-var totalCarouselHeight = 0;
+var logos = document.querySelectorAll("#hero .logoSVG");
 
-heroCarouselImages.forEach(function (img) {
-  //   img.style.height = `${img.offsetHeight - 100}px`;
-  totalCarouselHeight += img.offsetHeight;
+logos.forEach((logo) => {
+  var icon = logo.querySelector(".logoICON");
+  logo.addEventListener(
+    "mouseenter",
+    () => logoMouseEnterAnimation(icon),
+    false
+  );
+  logo.addEventListener(
+    "mouseleave",
+    () => logoMouseLeaveAnimation(icon),
+    false
+  );
 });
-
-totalCarouselHeight /= 2.9;
-
-heroCarousel.offsetHeight = totalCarouselHeight;
 
 anime
   .timeline({ loop: false })
@@ -47,7 +94,6 @@ anime
       rotate: [-60, 0],
       duration: 480,
       elasticity: 600,
-      translateY: [0, 0],
       opacity: [0, 1],
       easing: "easeOutBack",
     },
@@ -102,6 +148,18 @@ anime
   )
   .add(
     {
+      targets: "#hero .button svg",
+      scale: [1.4, 1],
+      duration: 640,
+      // translateY: [24, 0],
+      elasticity: 600,
+      opacity: [0, 1],
+      easing: "easeOutCirc",
+    },
+    "-=600"
+  )
+  .add(
+    {
       targets: "#hero .button .button-circle",
       strokeDashoffset: [anime.setDashoffset, 0],
       duration: 1000,
@@ -122,14 +180,75 @@ anime
       delay: anime.stagger(48),
     },
     "-=1200"
-  )
+  );
+
+var textAnimation = {
+  targets: ".animText:not(h1) .letter",
+  scale: [0.8, 1],
+  duration: 640,
+  elasticity: 600,
+  translateY: [24, 0],
+  opacity: [0, 1],
+  easing: "easeOutCirc",
+  delay: anime.stagger(4.8),
+};
+
+var worksStampRevealAnimation = anime({
+  targets: "#works .text-stamp",
+  duration: 600,
+  elasticity: 600,
+  opacity: [0, 1],
+  easing: "easeOutCirc",
+  autoplay: false,
+  update: function (a) {
+    if (a.progress > 20) worksStampRotateAnimation.play();
+  },
+});
+
+var worksStampRotateAnimation = anime({
+  targets: "#works .text-stamp",
+  rotate: [0, 360],
+  duration: 5000,
+  elasticity: 600,
+  loop: true,
+  autoplay: false,
+  easing: "linear",
+});
+
+var clientsAnimationTimeline = anime
+  .timeline({ loop: false, autoplay: false })
+  .add(textAnimation)
   .add(
     {
-      targets: "#hero .carousel",
-      duration: 500,
+      targets: "#works .clients__logos .logo",
+      scale: [0.1, 1],
+      duration: 640,
       elasticity: 600,
       opacity: [0, 1],
-      easing: "linear",
+      easing: "easeOutCirc",
+      delay: anime.stagger(200, { grid: [3, 4], from: "center" }),
     },
-    "-=1200"
+    "-=600"
   );
+
+ScrollOut({
+  targets: "#works .text-stamp",
+  offset: 100,
+  onShown: function (el) {
+    worksStampRevealAnimation.play();
+  },
+  onHidden: function (el) {
+    worksStampRevealAnimation.reset();
+    worksStampRotateAnimation.reset();
+  },
+});
+
+ScrollOut({
+  targets: "#works .clients",
+  onShown: function (el) {
+    clientsAnimationTimeline.play();
+  },
+  onHidden: function (el) {
+    clientsAnimationTimeline.reset();
+  },
+});

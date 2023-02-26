@@ -2,13 +2,18 @@ body {
   font-family: "Satoshi", sans-serif;
 }
 
-h1 {
+h1,
+h2 {
   font-weight: 500;
   font-size: 48px;
   line-height: 1.2;
   margin: 0;
   padding: 0;
   letter-spacing: -0.02em;
+
+  span {
+    display: block;
+  }
 }
 
 p {

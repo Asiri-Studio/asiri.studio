@@ -2,8 +2,22 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  transition: all 0.5s cubic-bezier(0, 0.55, 0.45, 1);
 
   svg {
+    transition: all 0.5s cubic-bezier(0, 0.55, 0.45, 1);
+    overflow: visible;
+
+    .button-arrow {
+      transform-origin: 50% 50%;
+      transition: all 0.8s 0.1s cubic-bezier(0, 0.55, 0.45, 1);
+    }
+
+    .button-circle {
+      transform-origin: 50% 50%;
+      transition: all 1s cubic-bezier(0, 0.55, 0.45, 1);
+    }
+
     &.left {
       margin-right: 20px;
     }
@@ -12,10 +26,28 @@
     }
   }
 
+  &:hover,
+  &:active {
+    font-weight: 500;
+
+    svg {
+      .button-arrow {
+        transform: scale(0.65);
+      }
+      .button-circle {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
   &.large {
     svg {
       width: 100px;
       height: auto;
+
+      .button-arrow {
+        transform-origin: 50% 50%;
+      }
     }
   }
 }

@@ -48,6 +48,16 @@ svg {
   }
 }
 
+.logoSVG {
+  .logoICON {
+    transform-origin: 90% 30%;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .animText .letter {
   transform-origin: 50% 100%;
   display: inline-block;
@@ -130,5 +140,40 @@ nav {
 
   .button {
     margin-top: 40px;
+  }
+}
+
+#works {
+  background: $slate900;
+  padding: 160px 0;
+  color: white;
+  position: relative;
+
+  .text-stamp {
+    display: block;
+    position: absolute;
+    top: -50%;
+  }
+
+  .clients {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &__logos {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+
+      .logo {
+        width: 140px;
+        height: 140px;
+        border-radius: 8px;
+        background: $slate800;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }
