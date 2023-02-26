@@ -123,7 +123,7 @@ anime
   })
   .add(
     {
-      targets: ".animText .letter",
+      targets: "h1.animText .letter",
       scale: [0.8, 1],
       duration: 640,
       elasticity: 600,
@@ -180,6 +180,16 @@ anime
       delay: anime.stagger(48),
     },
     "-=1200"
+  )
+  .add(
+    {
+      targets: "#hero .carousel",
+      duration: 240,
+      elasticity: 600,
+      opacity: [0, 1],
+      easing: "linear",
+    },
+    "-=1000"
   );
 
 var textAnimation = {
@@ -195,13 +205,13 @@ var textAnimation = {
 
 var worksStampRevealAnimation = anime({
   targets: "#works .text-stamp",
-  duration: 600,
+  duration: 1200,
   elasticity: 600,
   opacity: [0, 1],
   easing: "easeOutCirc",
   autoplay: false,
   update: function (a) {
-    if (a.progress > 20) worksStampRotateAnimation.play();
+    if (a.progress > 10) worksStampRotateAnimation.play();
   },
 });
 
@@ -245,6 +255,7 @@ ScrollOut({
 
 ScrollOut({
   targets: "#works .clients",
+  offset: 250,
   onShown: function (el) {
     clientsAnimationTimeline.play();
   },

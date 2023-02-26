@@ -119,11 +119,11 @@ nav {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-end;
 
     img {
-      max-height: 400px;
+      max-height: 500px;
       margin-bottom: 60px;
     }
   }
