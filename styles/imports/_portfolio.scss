@@ -1,0 +1,18 @@
+.portfolio {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 200px;
+
+    .content {
+      width: 1045px;
+
+      video {
+        margin-top: 70px;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

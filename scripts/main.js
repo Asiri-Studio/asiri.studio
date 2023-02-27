@@ -72,6 +72,17 @@ logos.forEach((logo) => {
   );
 });
 
+var textAnimation = (el) => ({
+  targets: el,
+  scale: [0.8, 1],
+  duration: 640,
+  elasticity: 600,
+  translateY: [24, 0],
+  opacity: [0, 1],
+  easing: "easeOutCirc",
+  delay: anime.stagger(4.8),
+});
+
 anime
   .timeline({ loop: false })
   .add(
@@ -121,19 +132,7 @@ anime
       document.querySelector(".preloader").style.display = "none";
     },
   })
-  .add(
-    {
-      targets: "h1.animText .letter",
-      scale: [0.8, 1],
-      duration: 640,
-      elasticity: 600,
-      translateY: [24, 0],
-      opacity: [0, 1],
-      easing: "easeOutCirc",
-      delay: anime.stagger(4.8),
-    },
-    "-=400"
-  )
+  .add(textAnimation("h1.animText .letter"), "-=400")
   .add(
     {
       targets: "#hero .button",
@@ -151,7 +150,6 @@ anime
       targets: "#hero .button svg",
       scale: [1.4, 1],
       duration: 640,
-      // translateY: [24, 0],
       elasticity: 600,
       opacity: [0, 1],
       easing: "easeOutCirc",
@@ -192,31 +190,20 @@ anime
     "-=1000"
   );
 
-var textAnimation = {
-  targets: ".animText:not(h1) .letter",
-  scale: [0.8, 1],
-  duration: 640,
-  elasticity: 600,
-  translateY: [24, 0],
-  opacity: [0, 1],
-  easing: "easeOutCirc",
-  delay: anime.stagger(4.8),
-};
-
-var worksStampRevealAnimation = anime({
-  targets: "#works .text-stamp",
+var stampRevealAnimation = anime({
+  targets: ".text-stamp",
   duration: 1200,
   elasticity: 600,
   opacity: [0, 1],
   easing: "easeOutCirc",
   autoplay: false,
   update: function (a) {
-    if (a.progress > 10) worksStampRotateAnimation.play();
+    if (a.progress > 10) stampRotateAnimation.play();
   },
 });
 
-var worksStampRotateAnimation = anime({
-  targets: "#works .text-stamp",
+var stampRotateAnimation = anime({
+  targets: ".text-stamp",
   rotate: [0, 360],
   duration: 5000,
   elasticity: 600,
@@ -227,7 +214,7 @@ var worksStampRotateAnimation = anime({
 
 var clientsAnimationTimeline = anime
   .timeline({ loop: false, autoplay: false })
-  .add(textAnimation)
+  .add(textAnimation(".clients .animText .letter"))
   .add(
     {
       targets: "#works .clients__logos .logo",
@@ -242,14 +229,14 @@ var clientsAnimationTimeline = anime
   );
 
 ScrollOut({
-  targets: "#works .text-stamp",
+  targets: ".text-stamp",
   offset: 100,
   onShown: function (el) {
-    worksStampRevealAnimation.play();
+    stampRevealAnimation.play();
   },
   onHidden: function (el) {
-    worksStampRevealAnimation.reset();
-    worksStampRotateAnimation.reset();
+    stampRevealAnimation.reset();
+    stampRotateAnimation.reset();
   },
 });
 
@@ -261,5 +248,71 @@ ScrollOut({
   },
   onHidden: function (el) {
     clientsAnimationTimeline.reset();
+  },
+});
+
+var portfolioItemAnimations = [];
+
+function setupPortfolioItemAnimations() {
+  var portfolioItems = document.querySelectorAll(".portfolio__item");
+
+  portfolioItems.forEach((el, index) => {
+    var letters = el.querySelectorAll(".animText .letter");
+    var buttonSVG = el.querySelector(".button svg");
+    var buttonCircle = el.querySelectorAll(".button .button-circle");
+    var video = el.querySelector("video");
+
+    portfolioItemAnimations[index] = anime
+      .timeline({ loop: false, autoplay: false })
+      .add(textAnimation(letters))
+      .add(
+        {
+          targets: buttonSVG,
+          scale: [1.4, 1],
+          duration: 640,
+          elasticity: 600,
+          opacity: [0, 1],
+          easing: "easeOutCirc",
+        },
+        "-=600"
+      )
+      .add(
+        {
+          targets: buttonCircle,
+          strokeDashoffset: [anime.setDashoffset, 0],
+          duration: 1000,
+          elasticity: 600,
+          easing: "easeOutQuad",
+        },
+        "-=600"
+      )
+      .add(
+        {
+          targets: video,
+          translateY: [40, 0],
+          duration: 640,
+          elasticity: 600,
+          opacity: [0, 1],
+          easing: "easeOutCirc",
+          complete: function () {
+            video.play();
+          },
+        },
+        "-=1200"
+      );
+  });
+}
+
+setupPortfolioItemAnimations();
+
+ScrollOut({
+  targets: ".portfolio__item",
+  onShown: function (el, ctx) {
+    portfolioItemAnimations[ctx.index].play();
+  },
+  onHidden: function (el, ctx) {
+    if (portfolioItemAnimations[ctx.index])
+      portfolioItemAnimations[ctx.index].reset();
+    el.querySelector("video").load();
   },
 });

@@ -1,0 +1,78 @@
+#hero {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+
+  .carousel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    img {
+      max-height: 500px;
+      margin-bottom: 60px;
+    }
+  }
+
+  .logoSVG {
+    width: 160px;
+    height: auto;
+    margin-bottom: 40px;
+  }
+
+  h1 {
+    max-width: 419px;
+  }
+
+  .button {
+    margin-top: 40px;
+  }
+}
+
+#works {
+  background: $slate900;
+  padding: 160px 0;
+  color: white;
+  position: relative;
+
+  .text-stamp {
+    display: block;
+    position: absolute;
+    top: -240px;
+  }
+
+  .clients {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &__logos {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+
+      .logo {
+        width: 140px;
+        height: 140px;
+        border-radius: 8px;
+        background: $slate800;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .portfolio {
+    margin-top: 200px;
+  }
+}

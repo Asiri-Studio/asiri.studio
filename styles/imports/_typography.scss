@@ -16,6 +16,19 @@ h2 {
   }
 }
 
+h3 {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.02em;
+
+  span {
+    display: block;
+  }
+}
+
 p {
   font-weight: 400;
 }
