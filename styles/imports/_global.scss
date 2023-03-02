@@ -9,6 +9,10 @@ body {
 
 svg {
   overflow: visible !important;
+
+  * {
+    overflow: visible !important;
+  }
 }
 
 .preloader {

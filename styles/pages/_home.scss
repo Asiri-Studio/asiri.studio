@@ -1,6 +1,5 @@
 #hero {
   height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,5 +73,18 @@
 
   .portfolio {
     margin-top: 200px;
+    padding-bottom: 400px;
+    position: relative;
+
+    &__item {
+      &:last-of-type {
+        position: absolute;
+        width: 100%;
+
+        .button {
+          color: $slate700;
+        }
+      }
+    }
   }
 }

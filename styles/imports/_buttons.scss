@@ -6,7 +6,6 @@
 
   svg {
     transition: all 0.5s cubic-bezier(0, 0.55, 0.45, 1);
-    overflow: visible;
 
     .button-arrow {
       transform-origin: 50% 50%;
@@ -32,10 +31,10 @@
 
     svg {
       .button-arrow {
-        transform: scale(0.65);
+        transform: scale(1.1);
       }
       .button-circle {
-        transform: rotate(90deg);
+        transform: scale(1.1) rotate(90deg);
       }
     }
   }
