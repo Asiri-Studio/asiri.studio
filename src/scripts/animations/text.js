@@ -1,6 +1,6 @@
 import anime from "animejs";
 import ScrollOut from "scroll-out";
-import { textAnimation } from "../helpers";
+import { REVERSE_ANIMATION, textAnimation } from "../helpers";
 
 // Wrap every letter in a span
 var textToAnimate = document.querySelectorAll(".animText");
@@ -28,11 +28,12 @@ setupIndependentTextAnimations();
 
 ScrollOut({
   targets: ".animText.self",
+  once: !REVERSE_ANIMATION,
   onShown: function (el, ctx) {
     independentTextAnimations[ctx.index].play();
   },
   onHidden: function (el, ctx) {
-    if (independentTextAnimations[ctx.index])
+    if (independentTextAnimations[ctx.index] && REVERSE_ANIMATION)
       independentTextAnimations[ctx.index].reset();
   },
 });

@@ -1,5 +1,9 @@
 import ScrollOut from "scroll-out";
-import { stampRevealAnimation, stampRotateAnimation } from "../helpers";
+import {
+  REVERSE_ANIMATION,
+  stampRevealAnimation,
+  stampRotateAnimation,
+} from "../helpers";
 
 const stampAnimations = [];
 
@@ -20,11 +24,14 @@ setupStampAnimations();
 ScrollOut({
   targets: ".text-stamp",
   offset: 100,
+  once: !REVERSE_ANIMATION,
   onShown: function (el, ctx) {
     stampAnimations[ctx.index].reveal.play();
   },
   onHidden: function (el, ctx) {
-    stampAnimations[ctx.index].reveal.reset();
-    stampAnimations[ctx.index].rotate.reset();
+    if (stampAnimations[ctx.index] && REVERSE_ANIMATION) {
+      stampAnimations[ctx.index].reveal.reset();
+      stampAnimations[ctx.index].rotate.reset();
+    }
   },
 });

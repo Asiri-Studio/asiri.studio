@@ -1,5 +1,7 @@
 import anime from "animejs";
 
+export const REVERSE_ANIMATION = true;
+
 export const textAnimation = (el) => ({
   targets: el,
   scale: [0.8, 1],
@@ -9,6 +11,7 @@ export const textAnimation = (el) => ({
   opacity: [0, 1],
   easing: "easeOutCirc",
   delay: anime.stagger(4.8),
+  autoplay: false,
 });
 
 export const stampRevealAnimation = (el, rotate) =>

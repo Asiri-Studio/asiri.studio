@@ -49,4 +49,16 @@
       }
     }
   }
+
+  &.cta {
+    padding: 16px 32px;
+    color: $slate900;
+    font-weight: 700;
+    background: $secondary300;
+    font-size: 22px;
+
+    img {
+      margin-left: 16px;
+    }
+  }
 }

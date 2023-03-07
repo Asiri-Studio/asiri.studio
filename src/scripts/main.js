@@ -1,6 +1,6 @@
 import anime from "animejs";
 import ScrollOut from "scroll-out";
-import { textAnimation } from "./helpers";
+import { REVERSE_ANIMATION, textAnimation } from "./helpers";
 import { heroPreloaderTimeline } from "./animations/preloader";
 
 import "./animations/carousel";
@@ -10,6 +10,7 @@ import "./animations/stamp";
 import "./animations/portfolio";
 import "./animations/cardList";
 import "./animations/testimonial";
+import "./animations/packages";
 
 // HERO & PRELOADER TIMELINE
 
@@ -95,10 +96,11 @@ var clientsAnimationTimeline = anime
 ScrollOut({
   targets: "#works .clients",
   offset: 250,
+  once: !REVERSE_ANIMATION,
   onShown: function (el) {
     clientsAnimationTimeline.play();
   },
   onHidden: function (el) {
-    clientsAnimationTimeline.reset();
+    if (REVERSE_ANIMATION) clientsAnimationTimeline.reset();
   },
 });

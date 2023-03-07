@@ -123,3 +123,24 @@
     }
   }
 }
+
+#pricing {
+  background: $slate900;
+  color: white;
+  position: relative;
+  margin-top: -200px;
+  padding-bottom: 80px;
+
+  .leftPad {
+    h2 {
+      margin-bottom: 30px;
+    }
+  }
+
+  .pricing__packages {
+    margin: 80px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

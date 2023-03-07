@@ -3,7 +3,7 @@
     position: relative;
     max-width: $portfolio-video-width;
     margin-top: 80px;
-    margin-bottom: 240px;
+    margin-bottom: 160px;
     margin-left: auto;
     margin-right: 0;
 
@@ -35,11 +35,11 @@
 
     video {
       width: $portfolio-video-width;
-      margin-bottom: 60px;
+      margin-bottom: 80px;
     }
 
     .content {
-      max-width: 70%;
+      max-width: 75%;
       margin-left: auto;
 
       h3 {
@@ -56,6 +56,10 @@
           margin: 0px;
         }
       }
+    }
+
+    .button {
+      margin-top: 80px;
     }
   }
 }

@@ -1,6 +1,6 @@
 import anime from "animejs";
 import ScrollOut from "scroll-out";
-import { textAnimation } from "../helpers";
+import { REVERSE_ANIMATION, textAnimation } from "../helpers";
 
 var testimonialAnimations = [];
 
@@ -36,7 +36,7 @@ function setupTestimonialAnimations() {
           opacity: [0, 1],
           easing: "easeOutCirc",
         },
-        "-=1800"
+        "-=600"
       )
       .add(
         {
@@ -55,11 +55,12 @@ setupTestimonialAnimations();
 
 ScrollOut({
   targets: ".testimonial",
+  once: !REVERSE_ANIMATION,
   onShown: function (el, ctx) {
     testimonialAnimations[ctx.index].play();
   },
   onHidden: function (el, ctx) {
-    if (testimonialAnimations[ctx.index])
+    if (testimonialAnimations[ctx.index] && REVERSE_ANIMATION)
       testimonialAnimations[ctx.index].reset();
     el.querySelector("video").load();
   },

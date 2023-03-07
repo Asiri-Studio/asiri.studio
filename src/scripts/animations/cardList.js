@@ -1,5 +1,5 @@
 import ScrollOut from "scroll-out";
-import { cardAnimationTimeline } from "../helpers";
+import { cardAnimationTimeline, REVERSE_ANIMATION } from "../helpers";
 
 const cardAnimations = [];
 
@@ -15,10 +15,12 @@ setupCardAnimations();
 
 ScrollOut({
   targets: ".card__list",
+  once: !REVERSE_ANIMATION,
   onShown: function (el, ctx) {
     cardAnimations[ctx.index].play();
   },
   onHidden: function (el, ctx) {
-    cardAnimations[ctx.index].reset();
+    if (cardAnimations[ctx.index] && REVERSE_ANIMATION)
+      cardAnimations[ctx.index].reset();
   },
 });

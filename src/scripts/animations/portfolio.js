@@ -1,6 +1,6 @@
 import anime from "animejs";
 import ScrollOut from "scroll-out";
-import { textAnimation } from "../helpers";
+import { REVERSE_ANIMATION, textAnimation } from "../helpers";
 
 var portfolioItemAnimations = [];
 
@@ -58,11 +58,12 @@ setupPortfolioItemAnimations();
 
 ScrollOut({
   targets: ".portfolio__item",
+  once: !REVERSE_ANIMATION,
   onShown: function (el, ctx) {
     portfolioItemAnimations[ctx.index].play();
   },
   onHidden: function (el, ctx) {
-    if (portfolioItemAnimations[ctx.index])
+    if (portfolioItemAnimations[ctx.index] && REVERSE_ANIMATION)
       portfolioItemAnimations[ctx.index].reset();
     el.querySelector("video").load();
   },
