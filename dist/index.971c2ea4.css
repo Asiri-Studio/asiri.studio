@@ -133,56 +133,6 @@ a {
   text-decoration: none;
 }
 
-.button {
-  justify-content: flex-start;
-  align-items: center;
-  transition: all .5s cubic-bezier(0, .55, .45, 1);
-  display: flex;
-}
-
-.button svg {
-  transition: all .5s cubic-bezier(0, .55, .45, 1);
-}
-
-.button svg .button-arrow {
-  transform-origin: 50%;
-  transition: all .8s cubic-bezier(0, .55, .45, 1) .1s;
-}
-
-.button svg .button-circle {
-  transform-origin: 50%;
-  transition: all 1s cubic-bezier(0, .55, .45, 1);
-}
-
-.button svg.left {
-  margin-right: 20px;
-}
-
-.button svg.right {
-  margin-left: 20px;
-}
-
-.button:hover, .button:active {
-  font-weight: 500;
-}
-
-.button:hover svg .button-arrow, .button:active svg .button-arrow {
-  transform: scale(1.1);
-}
-
-.button:hover svg .button-circle, .button:active svg .button-circle {
-  transform: scale(1.1)rotate(90deg);
-}
-
-.button.large svg {
-  width: 100px;
-  height: auto;
-}
-
-.button.large svg .button-arrow {
-  transform-origin: 50%;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -283,6 +233,56 @@ nav ul li a:hover, nav ul li a.active {
 
 .leftPad {
   margin-left: 291px;
+}
+
+.button {
+  justify-content: flex-start;
+  align-items: center;
+  transition: all .5s cubic-bezier(0, .55, .45, 1);
+  display: flex;
+}
+
+.button svg {
+  transition: all .5s cubic-bezier(0, .55, .45, 1);
+}
+
+.button svg .button-arrow {
+  transform-origin: 50%;
+  transition: all .8s cubic-bezier(0, .55, .45, 1) .1s;
+}
+
+.button svg .button-circle {
+  transform-origin: 50%;
+  transition: all 1s cubic-bezier(0, .55, .45, 1);
+}
+
+.button svg.left {
+  margin-right: 20px;
+}
+
+.button svg.right {
+  margin-left: 20px;
+}
+
+.button:hover, .button:active {
+  font-weight: 500;
+}
+
+.button:hover svg .button-arrow, .button:active svg .button-arrow {
+  transform: scale(1.1);
+}
+
+.button:hover svg .button-circle, .button:active svg .button-circle {
+  transform: scale(1.1)rotate(90deg);
+}
+
+.button.large svg {
+  width: 100px;
+  height: auto;
+}
+
+.button.large svg .button-arrow {
+  transform-origin: 50%;
 }
 
 .portfolio__item {
