@@ -63,7 +63,7 @@ svg {
 }
 
 .container {
-  max-width: 1336px;
+  max-width: $container-width;
   margin: 0 auto;
   position: relative;
 }
@@ -89,15 +89,20 @@ nav {
         padding: 6px 12px;
         border-radius: 100px;
         margin-right: 20px;
-        color: inherit;
+        color: $slate700;
         text-decoration: none;
         transition: all 220ms linear;
 
         &:hover,
         &.active {
           border-color: $slate300;
+          color: $slate900;
         }
       }
     }
   }
+}
+
+.leftPad {
+  margin-left: $container-width - $portfolio-video-width;
 }

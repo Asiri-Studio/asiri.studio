@@ -1,10 +1,13 @@
 // Wrap every letter in a span
 var textToAnimate = document.querySelectorAll(".animText");
 textToAnimate.forEach((textWrapper) => {
-  textWrapper.innerHTML = textWrapper.textContent.replace(
-    /\S/g,
-    "<span class='letter'>$&</span>"
-  );
+  textWrapper.innerHTML = textWrapper.innerHTML
+    .split("<br>")
+    .reduce(
+      (result, str) =>
+        result + `${str.replace(/\S/g, "<span class='letter'>$&</span>")} <br>`,
+      ""
+    );
 });
 
 var heroLogo = document.querySelector("#hero .logoSVG").getBoundingClientRect();
@@ -56,7 +59,7 @@ var logoMouseLeaveAnimation = (el) => {
   });
 };
 
-var logos = document.querySelectorAll("#hero .logoSVG");
+var logos = document.querySelectorAll(".logoSVG:not(.logoSVG--preloader)");
 
 logos.forEach((logo) => {
   var icon = logo.querySelector(".logoICON");
@@ -116,7 +119,7 @@ anime
       return heroLogo.left - el.getBoundingClientRect().left;
     },
     top: function (el) {
-      return heroLogo.top - 20 - el.getBoundingClientRect().top;
+      return heroLogo.top - 18 - el.getBoundingClientRect().top;
     },
     duration: 540,
     elasticity: 600,
@@ -314,5 +317,55 @@ ScrollOut({
     if (portfolioItemAnimations[ctx.index])
       portfolioItemAnimations[ctx.index].reset();
     el.querySelector("video").load();
+  },
+});
+
+var reasoningAnimationTimeline = anime
+  .timeline({ loop: false, autoplay: false })
+  .add(textAnimation("#reasoning .leftPad .animText .letter"));
+
+ScrollOut({
+  targets: "#reasoning .leftPad",
+  onShown: function (el) {
+    reasoningAnimationTimeline.play();
+  },
+  onHidden: function (el) {
+    reasoningAnimationTimeline.reset();
+  },
+});
+
+var cardAnimationTimeline = anime
+  .timeline({
+    autoplay: false,
+    loop: false,
+  })
+  .add({
+    targets: ".card",
+    duration: 640,
+    elasticity: 600,
+    translateY: [24, 0],
+    opacity: [0, 1],
+    easing: "easeOutCirc",
+    delay: anime.stagger(200),
+  })
+  .add(textAnimation(".card .animText .letter"), "-=1200")
+  .add(
+    {
+      targets: ".card .icon",
+      duration: 640,
+      elasticity: 600,
+      opacity: [0, 1],
+      easing: "easeOutCirc",
+    },
+    "-=800"
+  );
+
+ScrollOut({
+  targets: ".card__list",
+  onShown: function (el) {
+    cardAnimationTimeline.play();
+  },
+  onHidden: function (el) {
+    cardAnimationTimeline.reset();
   },
 });
