@@ -1,0 +1,25 @@
+{
+  "name": "www.asiri.studio",
+  "version": "1.0.0",
+  "description": "Asiri's website",
+  "scripts": {
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "animejs": "^3.2.1",
+    "parcel": "^2.8.3",
+    "posthtml-doctype": "^1.1.1",
+    "scroll-out": "^2.2.12"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.3",
+    "posthtml-include": "^1.7.4"
+  }
+}
