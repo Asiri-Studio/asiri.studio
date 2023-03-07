@@ -9,6 +9,7 @@ import "./animations/logo";
 import "./animations/stamp";
 import "./animations/portfolio";
 import "./animations/cardList";
+import "./animations/testimonial";
 
 // HERO & PRELOADER TIMELINE
 

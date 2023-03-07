@@ -570,6 +570,7 @@ var _logo = require("./animations/logo");
 var _stamp = require("./animations/stamp");
 var _portfolio = require("./animations/portfolio");
 var _cardList = require("./animations/cardList");
+var _testimonial = require("./animations/testimonial");
 // HERO & PRELOADER TIMELINE
 (0, _preloader.heroPreloaderTimeline).add((0, _helpers.textAnimation)("h1.animText .letter"), "-=400").add({
     targets: "#hero .button",
@@ -675,7 +676,7 @@ var clientsAnimationTimeline = (0, _animejsDefault.default).timeline({
     }
 });
 
-},{"animejs":"jokr5","scroll-out":"lIiRG","./helpers":"luDvE","./animations/preloader":"laI92","./animations/carousel":"boC3Q","./animations/text":"l0bB7","./animations/logo":"1e6mZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./animations/stamp":"hVBZu","./animations/portfolio":"c56R6","./animations/cardList":"h9KRy"}],"jokr5":[function(require,module,exports) {
+},{"animejs":"jokr5","scroll-out":"lIiRG","./helpers":"luDvE","./animations/preloader":"laI92","./animations/carousel":"boC3Q","./animations/text":"l0bB7","./animations/logo":"1e6mZ","./animations/stamp":"hVBZu","./animations/portfolio":"c56R6","./animations/cardList":"h9KRy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./animations/testimonial":"bUkzq"}],"jokr5":[function(require,module,exports) {
 /*
  * anime.js v3.2.1
  * (c) 2020 Julian Garnier
@@ -2570,7 +2571,7 @@ setupStampAnimations();
     }
 });
 
-},{"scroll-out":"lIiRG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../helpers":"luDvE"}],"c56R6":[function(require,module,exports) {
+},{"scroll-out":"lIiRG","../helpers":"luDvE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c56R6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _animejs = require("animejs");
 var _animejsDefault = parcelHelpers.interopDefault(_animejs);
@@ -2641,7 +2642,7 @@ setupPortfolioItemAnimations();
     }
 });
 
-},{"animejs":"jokr5","scroll-out":"lIiRG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../helpers":"luDvE"}],"h9KRy":[function(require,module,exports) {
+},{"animejs":"jokr5","scroll-out":"lIiRG","../helpers":"luDvE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h9KRy":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _scrollOut = require("scroll-out");
 var _scrollOutDefault = parcelHelpers.interopDefault(_scrollOut);
@@ -2665,6 +2666,77 @@ setupCardAnimations();
     }
 });
 
-},{"scroll-out":"lIiRG","../helpers":"luDvE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["5anPP","3cYfC"], "3cYfC", "parcelRequire8869")
+},{"scroll-out":"lIiRG","../helpers":"luDvE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bUkzq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _animejs = require("animejs");
+var _animejsDefault = parcelHelpers.interopDefault(_animejs);
+var _scrollOut = require("scroll-out");
+var _scrollOutDefault = parcelHelpers.interopDefault(_scrollOut);
+var _helpers = require("../helpers");
+var testimonialAnimations = [];
+function setupTestimonialAnimations() {
+    var testimonials = document.querySelectorAll(".testimonial");
+    testimonials.forEach((el, index)=>{
+        var letters = el.querySelectorAll(".animText .letter");
+        var buttonSVG = el.querySelector(".button svg");
+        var buttonCircle = el.querySelectorAll(".button .button-circle");
+        var video = el.querySelector("video");
+        testimonialAnimations[index] = (0, _animejsDefault.default).timeline({
+            loop: false,
+            autoplay: false
+        }).add({
+            targets: video,
+            translateY: [
+                40,
+                0
+            ],
+            duration: 640,
+            elasticity: 600,
+            opacity: [
+                0,
+                1
+            ],
+            easing: "easeOutCirc",
+            complete: function() {
+                video.play();
+            }
+        }).add((0, _helpers.textAnimation)(letters)).add({
+            targets: buttonSVG,
+            scale: [
+                1.4,
+                1
+            ],
+            duration: 640,
+            elasticity: 600,
+            opacity: [
+                0,
+                1
+            ],
+            easing: "easeOutCirc"
+        }, "-=1800").add({
+            targets: buttonCircle,
+            strokeDashoffset: [
+                (0, _animejsDefault.default).setDashoffset,
+                0
+            ],
+            duration: 1000,
+            elasticity: 600,
+            easing: "easeOutQuad"
+        }, "-=600");
+    });
+}
+setupTestimonialAnimations();
+(0, _scrollOutDefault.default)({
+    targets: ".testimonial",
+    onShown: function(el, ctx) {
+        testimonialAnimations[ctx.index].play();
+    },
+    onHidden: function(el, ctx) {
+        if (testimonialAnimations[ctx.index]) testimonialAnimations[ctx.index].reset();
+        el.querySelector("video").load();
+    }
+});
+
+},{"animejs":"jokr5","scroll-out":"lIiRG","../helpers":"luDvE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["5anPP","3cYfC"], "3cYfC", "parcelRequire8869")
 
 //# sourceMappingURL=index.b8fca702.js.map

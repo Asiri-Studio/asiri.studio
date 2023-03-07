@@ -101,3 +101,25 @@
     margin: 100px auto 0;
   }
 }
+
+#testimonials {
+  background: $slate900;
+  color: white;
+  margin-top: 560px;
+  position: relative;
+
+  h2 {
+    color: $slate900;
+  }
+
+  .container {
+    position: relative;
+    top: -450px;
+  }
+
+  .testimonial {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
