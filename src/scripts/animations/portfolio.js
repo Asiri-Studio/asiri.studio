@@ -46,6 +46,7 @@ function setupPortfolioItemAnimations() {
           opacity: [0, 1],
           easing: "easeOutCirc",
           complete: function () {
+            video.currentTime = 0;
             video.play();
           },
         },
@@ -66,6 +67,5 @@ ScrollOut({
   onHidden: function (el, ctx) {
     if (portfolioItemAnimations[ctx.index] && REVERSE_ANIMATION)
       portfolioItemAnimations[ctx.index].reset();
-    el.querySelector("video").load();
   },
 });

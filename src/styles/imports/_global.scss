@@ -64,9 +64,13 @@ svg {
 }
 
 .container {
-  max-width: $container-width;
+  max-width: $container-width-lg;
   margin: 0 auto;
   position: relative;
+
+  @include for-small-desktops-only {
+    max-width: $container-width-sm;
+  }
 }
 
 nav {
@@ -105,5 +109,17 @@ nav {
 }
 
 .leftPad {
-  margin-left: $container-width - $portfolio-video-width;
+  margin-left: $container-width-lg - $portfolio-video-width-lg;
+
+  @include for-small-desktops-only {
+    margin-left: $container-width-sm - $portfolio-video-width-sm;
+  }
+}
+
+.text-stamp {
+  width: auto;
+
+  @include for-small-desktops-only {
+    max-width: $text-stamp-width-sm;
+  }
 }

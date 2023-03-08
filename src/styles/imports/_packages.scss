@@ -27,13 +27,21 @@
       justify-content: center;
       align-items: baseline;
 
-      &--discounted {
-        margin-top: 0px;
+      @include for-small-desktops-only {
+        font-size: 56px;
       }
 
       .time {
         font-size: 24px;
         font-weight: 500;
+
+        @include for-small-desktops-only {
+          font-size: 20px;
+        }
+      }
+
+      &--discounted {
+        margin-top: 0px;
       }
 
       &--striked {
@@ -88,6 +96,15 @@
         height: 16px;
         margin-right: 16px;
         filter: grayscale(1);
+
+        @include for-small-desktops-only {
+          height: 14px;
+          margin-right: 14px;
+        }
+      }
+
+      @include for-small-desktops-only {
+        font-size: 18px;
       }
 
       &:last-child {
@@ -115,5 +132,15 @@
     right: -30px;
     z-index: 2;
     max-width: 120px;
+
+    @include for-small-desktops-only {
+      max-width: 100px;
+      top: -40px;
+      right: -20px;
+    }
+  }
+
+  @include for-small-desktops-only {
+    max-width: 380px;
   }
 }

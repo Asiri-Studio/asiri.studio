@@ -34,7 +34,7 @@ setupPackageAnimations();
 ScrollOut({
   targets: ".package",
   once: !REVERSE_ANIMATION,
-  threshold: THRESHOLD,
+  threshold: THRESHOLD + 0.1,
   onShown: function (el, ctx) {
     packageAnimations[ctx.index].play();
   },

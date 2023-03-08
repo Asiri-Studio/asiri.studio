@@ -23,6 +23,7 @@ function setupTestimonialAnimations() {
         opacity: [0, 1],
         easing: "easeOutCirc",
         complete: function () {
+          video.currentTime = 0;
           video.play();
         },
       })
@@ -63,6 +64,5 @@ ScrollOut({
   onHidden: function (el, ctx) {
     if (testimonialAnimations[ctx.index] && REVERSE_ANIMATION)
       testimonialAnimations[ctx.index].reset();
-    el.querySelector("video").load();
   },
 });

@@ -6,7 +6,7 @@
     margin-bottom: 200px;
 
     .content {
-      width: $portfolio-video-width;
+      width: $portfolio-video-width-lg;
 
       video {
         margin-top: 70px;
@@ -16,6 +16,10 @@
 
       .button {
         margin-top: 60px;
+      }
+
+      @include for-small-desktops-only {
+        width: $portfolio-video-width-sm;
       }
     }
   }

@@ -1,7 +1,7 @@
 .testimonial {
   &.video {
     position: relative;
-    max-width: $portfolio-video-width;
+    max-width: $portfolio-video-width-lg;
     margin-top: 80px;
     margin-bottom: 160px;
     margin-left: auto;
@@ -18,7 +18,11 @@
       .text-stamp {
         left: auto;
         right: -80px;
-        top: calc($portfolio-video-width * 9 / 16) - 80px;
+        top: calc($portfolio-video-width-lg * 9 / 16) - 80px;
+
+        @include for-small-desktops-only {
+          top: calc($portfolio-video-width-sm * 9 / 16) - 80px;
+        }
       }
 
       .content {
@@ -30,12 +34,20 @@
     .text-stamp {
       position: absolute;
       left: -80px;
-      top: calc($portfolio-video-width * 9 / 16) - 80px;
+      top: calc($portfolio-video-width-lg * 9 / 16) - 80px;
+
+      @include for-small-desktops-only {
+        top: calc($portfolio-video-width-sm * 9 / 16) - 80px;
+      }
     }
 
     video {
-      width: $portfolio-video-width;
+      width: $portfolio-video-width-lg;
       margin-bottom: 80px;
+
+      @include for-small-desktops-only {
+        width: $portfolio-video-width-sm;
+      }
     }
 
     .content {
@@ -60,6 +72,10 @@
 
     .button {
       margin-top: 80px;
+    }
+
+    @include for-small-desktops-only {
+      max-width: $portfolio-video-width-sm;
     }
   }
 }

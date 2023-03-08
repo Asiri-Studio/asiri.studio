@@ -60,5 +60,13 @@
     img {
       margin-left: 16px;
     }
+
+    @include for-small-desktops-only {
+      font-size: 18px;
+
+      img {
+        margin-left: 14px;
+      }
+    }
   }
 }

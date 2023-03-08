@@ -31,6 +31,16 @@ $secondary700: #a16207;
 $secondary800: #854d0e;
 $secondary900: #713f12;
 
-$container-width: 1336px;
-$portfolio-video-width: 1045px;
-$card-width: 550px;
+$container-width-lg: 1336px;
+$container-width-sm: 1200px;
+
+$portfolio-video-width-lg: 1045px;
+$portfolio-video-width-sm: 900px;
+
+$card-width-lg: 550px;
+$card-width-sm: 500px;
+
+$text-stamp-width-sm: 120px;
+
+$desktop-breakpoint: 1800px; // small desktop < $desktop-breakpoint < large desktop
+$mobile-breakpoint: 1400px; // mobile < $mobile-breakpoint < small desktop
