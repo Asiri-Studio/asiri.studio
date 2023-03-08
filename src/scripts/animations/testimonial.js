@@ -1,6 +1,6 @@
 import anime from "animejs";
 import ScrollOut from "scroll-out";
-import { REVERSE_ANIMATION, textAnimation } from "../helpers";
+import { REVERSE_ANIMATION, textAnimation, THRESHOLD } from "../helpers";
 
 var testimonialAnimations = [];
 
@@ -56,6 +56,7 @@ setupTestimonialAnimations();
 ScrollOut({
   targets: ".testimonial",
   once: !REVERSE_ANIMATION,
+  threshold: THRESHOLD,
   onShown: function (el, ctx) {
     testimonialAnimations[ctx.index].play();
   },

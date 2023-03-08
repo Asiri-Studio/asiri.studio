@@ -1,5 +1,9 @@
 import ScrollOut from "scroll-out";
-import { cardAnimationTimeline, REVERSE_ANIMATION } from "../helpers";
+import {
+  cardAnimationTimeline,
+  REVERSE_ANIMATION,
+  THRESHOLD,
+} from "../helpers";
 
 const cardAnimations = [];
 
@@ -15,6 +19,7 @@ setupCardAnimations();
 
 ScrollOut({
   targets: ".card__list",
+  threshold: THRESHOLD,
   once: !REVERSE_ANIMATION,
   onShown: function (el, ctx) {
     cardAnimations[ctx.index].play();

@@ -1,6 +1,6 @@
 import anime from "animejs";
 import ScrollOut from "scroll-out";
-import { REVERSE_ANIMATION, textAnimation } from "../helpers";
+import { REVERSE_ANIMATION, textAnimation, THRESHOLD } from "../helpers";
 
 var packageAnimations = [];
 
@@ -34,6 +34,7 @@ setupPackageAnimations();
 ScrollOut({
   targets: ".package",
   once: !REVERSE_ANIMATION,
+  threshold: THRESHOLD,
   onShown: function (el, ctx) {
     packageAnimations[ctx.index].play();
   },

@@ -1,6 +1,6 @@
 import anime from "animejs";
 import ScrollOut from "scroll-out";
-import { REVERSE_ANIMATION, textAnimation } from "../helpers";
+import { REVERSE_ANIMATION, textAnimation, THRESHOLD } from "../helpers";
 
 var portfolioItemAnimations = [];
 
@@ -59,6 +59,7 @@ setupPortfolioItemAnimations();
 ScrollOut({
   targets: ".portfolio__item",
   once: !REVERSE_ANIMATION,
+  threshold: THRESHOLD,
   onShown: function (el, ctx) {
     portfolioItemAnimations[ctx.index].play();
   },

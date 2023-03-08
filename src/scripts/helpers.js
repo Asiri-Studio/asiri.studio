@@ -1,6 +1,7 @@
 import anime from "animejs";
 
 export const REVERSE_ANIMATION = true;
+export const THRESHOLD = null;
 
 export const textAnimation = (el) => ({
   targets: el,

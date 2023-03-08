@@ -3,6 +3,7 @@ import {
   REVERSE_ANIMATION,
   stampRevealAnimation,
   stampRotateAnimation,
+  THRESHOLD,
 } from "../helpers";
 
 const stampAnimations = [];
@@ -25,6 +26,7 @@ ScrollOut({
   targets: ".text-stamp",
   offset: 100,
   once: !REVERSE_ANIMATION,
+  threshold: THRESHOLD,
   onShown: function (el, ctx) {
     stampAnimations[ctx.index].reveal.play();
   },
