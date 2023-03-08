@@ -13,13 +13,11 @@
     "animejs": "^3.2.1",
     "parcel": "^2.8.3",
     "posthtml-doctype": "^1.1.1",
-    "scroll-out": "^2.2.12"
+    "scroll-out": "^2.2.12",
+    "posthtml-include": "^1.7.4",
+    "@parcel/transformer-sass": "^2.8.3"
   },
   "browserslist": [
     "defaults"
-  ],
-  "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.3",
-    "posthtml-include": "^1.7.4"
-  }
+  ]
 }
