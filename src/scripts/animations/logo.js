@@ -1,3 +1,5 @@
+import anime from "animejs";
+
 var logoMouseEnterAnimation = (el) => {
   anime.remove(el);
   anime
