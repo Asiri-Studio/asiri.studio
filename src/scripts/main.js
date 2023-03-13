@@ -4,13 +4,13 @@ import { REVERSE_ANIMATION, textAnimation } from "./helpers";
 import { heroPreloaderTimeline } from "./animations/preloader";
 
 import "./animations/carousel";
-// import "./animations/text";
+import "./animations/text";
 import "./animations/logo";
 import "./animations/stamp";
-// import "./animations/portfolio";
-// import "./animations/cardList";
-// import "./animations/testimonial";
-// import "./animations/packages";
+import "./animations/portfolio";
+import "./animations/cardList";
+import "./animations/testimonial";
+import "./animations/packages";
 
 // HERO & PRELOADER TIMELINE
 
