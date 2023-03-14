@@ -13,42 +13,45 @@ function setupTestimonialAnimations() {
     var buttonCircle = el.querySelectorAll(".button .button-circle");
     var video = el.querySelector("video");
 
-    testimonialAnimations[index] = anime
-      .timeline({ loop: false, autoplay: false })
-      .add({
-        targets: video,
-        translateY: [40, 0],
-        duration: 640,
-        elasticity: 600,
-        opacity: [0, 1],
-        easing: "easeOutCirc",
-        complete: function () {
-          video.currentTime = 0;
-          video.play();
-        },
-      })
-      .add(textAnimation(letters))
-      .add(
-        {
-          targets: buttonSVG,
-          scale: [1.4, 1],
+    testimonialAnimations[index] = {
+      animation: anime
+        .timeline({ loop: false, autoplay: false })
+        .add({
+          targets: video,
+          translateY: [40, 0],
           duration: 640,
           elasticity: 600,
           opacity: [0, 1],
           easing: "easeOutCirc",
-        },
-        "-=600"
-      )
-      .add(
-        {
-          targets: buttonCircle,
-          strokeDashoffset: [anime.setDashoffset, 0],
-          duration: 1000,
-          elasticity: 600,
-          easing: "easeOutQuad",
-        },
-        "-=600"
-      );
+          complete: function () {
+            video.currentTime = 0;
+            video.play();
+          },
+        })
+        .add(textAnimation(letters))
+        .add(
+          {
+            targets: buttonSVG,
+            scale: [1.4, 1],
+            duration: 640,
+            elasticity: 600,
+            opacity: [0, 1],
+            easing: "easeOutCirc",
+          },
+          "-=600"
+        )
+        .add(
+          {
+            targets: buttonCircle,
+            strokeDashoffset: [anime.setDashoffset, 0],
+            duration: 1000,
+            elasticity: 600,
+            easing: "easeOutQuad",
+          },
+          "-=600"
+        ),
+      callbacks: 0,
+    };
   });
 }
 
@@ -59,10 +62,16 @@ ScrollOut({
   once: !REVERSE_ANIMATION,
   threshold: THRESHOLD,
   onShown: function (el, ctx) {
-    testimonialAnimations[ctx.index].play();
+    if (testimonialAnimations[ctx.index].callbacks === 0) {
+      testimonialAnimations[ctx.index].animation.play();
+      testimonialAnimations[ctx.index].callbacks++;
+    }
   },
   onHidden: function (el, ctx) {
-    if (testimonialAnimations[ctx.index] && REVERSE_ANIMATION)
-      testimonialAnimations[ctx.index].reset();
+    if (
+      testimonialAnimations[ctx.index] &&
+      testimonialAnimations[ctx.index].callbacks === 0
+    )
+      testimonialAnimations[ctx.index].animation.reset();
   },
 });

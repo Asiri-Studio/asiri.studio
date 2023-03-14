@@ -11,21 +11,24 @@ function setupPackageAnimations() {
     var letters = el.querySelectorAll(".animText .letter");
     var deliverables = el.querySelectorAll("ul.deliverables li");
 
-    packageAnimations[index] = anime
-      .timeline({ loop: false, autoplay: false })
-      .add(textAnimation(letters))
-      .add(
-        {
-          targets: deliverables,
-          duration: 640,
-          elasticity: 600,
-          translateY: [24, 0],
-          opacity: [0, 1],
-          easing: "easeOutCirc",
-          delay: anime.stagger(80),
-        },
-        "-=600"
-      );
+    packageAnimations[index] = {
+      animation: anime
+        .timeline({ loop: false, autoplay: false })
+        .add(textAnimation(letters))
+        .add(
+          {
+            targets: deliverables,
+            duration: 640,
+            elasticity: 600,
+            translateY: [24, 0],
+            opacity: [0, 1],
+            easing: "easeOutCirc",
+            delay: anime.stagger(80),
+          },
+          "-=600"
+        ),
+      callbacks: 0,
+    };
   });
 }
 
@@ -36,10 +39,16 @@ ScrollOut({
   once: !REVERSE_ANIMATION,
   threshold: THRESHOLD + 0.1,
   onShown: function (el, ctx) {
-    packageAnimations[ctx.index].play();
+    if (packageAnimations[ctx.index].callbacks === 0) {
+      packageAnimations[ctx.index].animation.play();
+      packageAnimations[ctx.index].callbacks++;
+    }
   },
   onHidden: function (el, ctx) {
-    if (packageAnimations[ctx.index] && REVERSE_ANIMATION)
-      packageAnimations[ctx.index].reset();
+    if (
+      packageAnimations[ctx.index].animation &&
+      packageAnimations[ctx.index].callbacks === 0
+    )
+      packageAnimations[ctx.index].animation.reset();
   },
 });

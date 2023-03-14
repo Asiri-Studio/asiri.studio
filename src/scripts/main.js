@@ -61,16 +61,6 @@ heroPreloaderTimeline
       delay: anime.stagger(48),
     },
     "-=1200"
-  )
-  .add(
-    {
-      targets: "#hero .carousel",
-      duration: 240,
-      elasticity: 600,
-      opacity: [0, 1],
-      easing: "linear",
-    },
-    "-=1000"
   );
 
 heroPreloaderTimeline.play();

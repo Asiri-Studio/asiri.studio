@@ -11,7 +11,10 @@ const setupCardAnimations = () => {
   const cardLists = document.querySelectorAll(".card__list");
   cardLists.forEach((list, index) => {
     const cards = list.querySelectorAll(".card");
-    cardAnimations[index] = cardAnimationTimeline(cards);
+    cardAnimations[index] = {
+      animation: cardAnimationTimeline(cards),
+      callbacks: 0,
+    };
   });
 };
 
@@ -22,10 +25,16 @@ ScrollOut({
   threshold: THRESHOLD,
   once: !REVERSE_ANIMATION,
   onShown: function (el, ctx) {
-    cardAnimations[ctx.index].play();
+    if (cardAnimations[ctx.index].callbacks === 0) {
+      cardAnimations[ctx.index].animation.play();
+      cardAnimations[ctx.index].callbacks++;
+    }
   },
   onHidden: function (el, ctx) {
-    if (cardAnimations[ctx.index] && REVERSE_ANIMATION)
-      cardAnimations[ctx.index].reset();
+    if (
+      cardAnimations[ctx.index].animation &&
+      cardAnimations[ctx.index].callbacks === 0
+    )
+      cardAnimations[ctx.index].animation.reset();
   },
 });

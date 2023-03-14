@@ -13,45 +13,48 @@ function setupPortfolioItemAnimations() {
     var buttonCircle = el.querySelectorAll(".button .button-circle");
     var video = el.querySelector("video");
 
-    portfolioItemAnimations[index] = anime
-      .timeline({ loop: false, autoplay: false })
-      .add(textAnimation(letters))
-      .add(
-        {
-          targets: buttonSVG,
-          scale: [1.4, 1],
-          duration: 640,
-          elasticity: 600,
-          opacity: [0, 1],
-          easing: "easeOutCirc",
-        },
-        "-=600"
-      )
-      .add(
-        {
-          targets: buttonCircle,
-          strokeDashoffset: [anime.setDashoffset, 0],
-          duration: 1000,
-          elasticity: 600,
-          easing: "easeOutQuad",
-        },
-        "-=600"
-      )
-      .add(
-        {
-          targets: video,
-          translateY: [40, 0],
-          duration: 640,
-          elasticity: 600,
-          opacity: [0, 1],
-          easing: "easeOutCirc",
-          complete: function () {
-            video.currentTime = 0;
-            video.play();
+    portfolioItemAnimations[index] = {
+      animation: anime
+        .timeline({ loop: false, autoplay: false })
+        .add(textAnimation(letters))
+        .add(
+          {
+            targets: buttonSVG,
+            scale: [1.4, 1],
+            duration: 640,
+            elasticity: 600,
+            opacity: [0, 1],
+            easing: "easeOutCirc",
           },
-        },
-        "-=1200"
-      );
+          "-=600"
+        )
+        .add(
+          {
+            targets: buttonCircle,
+            strokeDashoffset: [anime.setDashoffset, 0],
+            duration: 1000,
+            elasticity: 600,
+            easing: "easeOutQuad",
+          },
+          "-=600"
+        )
+        .add(
+          {
+            targets: video,
+            translateY: [40, 0],
+            duration: 640,
+            elasticity: 600,
+            opacity: [0, 1],
+            easing: "easeOutCirc",
+            complete: function () {
+              video.currentTime = 0;
+              video.play();
+            },
+          },
+          "-=1200"
+        ),
+      callbacks: 0,
+    };
   });
 }
 
@@ -62,10 +65,16 @@ ScrollOut({
   once: !REVERSE_ANIMATION,
   threshold: THRESHOLD,
   onShown: function (el, ctx) {
-    portfolioItemAnimations[ctx.index].play();
+    if (portfolioItemAnimations[ctx.index].callbacks === 0) {
+      portfolioItemAnimations[ctx.index].animation.play();
+      portfolioItemAnimations[ctx.index].callbacks++;
+    }
   },
   onHidden: function (el, ctx) {
-    if (portfolioItemAnimations[ctx.index] && REVERSE_ANIMATION)
-      portfolioItemAnimations[ctx.index].reset();
+    if (
+      portfolioItemAnimations[ctx.index].animation &&
+      portfolioItemAnimations[ctx.index].callbacks === 0
+    )
+      portfolioItemAnimations[ctx.index].animation.reset();
   },
 });

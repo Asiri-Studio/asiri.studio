@@ -20,7 +20,10 @@ function setupIndependentTextAnimations() {
   var independentTexts = document.querySelectorAll(".animText.self");
   independentTexts.forEach((el, index) => {
     const letters = el.querySelectorAll(".letter");
-    independentTextAnimations[index] = anime(textAnimation(letters));
+    independentTextAnimations[index] = {
+      animation: anime(textAnimation(letters)),
+      callbacks: 0,
+    };
   });
 }
 
@@ -31,10 +34,16 @@ ScrollOut({
   once: !REVERSE_ANIMATION,
   threshold: THRESHOLD,
   onShown: function (el, ctx) {
-    independentTextAnimations[ctx.index].play();
+    if (independentTextAnimations[ctx.index].callbacks === 0) {
+      independentTextAnimations[ctx.index].animation.play();
+      independentTextAnimations[ctx.index].callbacks++;
+    }
   },
   onHidden: function (el, ctx) {
-    if (independentTextAnimations[ctx.index] && REVERSE_ANIMATION)
-      independentTextAnimations[ctx.index].reset();
+    if (
+      independentTextAnimations[ctx.index] &&
+      independentTextAnimations[ctx.index].callbacks === 0
+    )
+      independentTextAnimations[ctx.index].animation.reset();
   },
 });

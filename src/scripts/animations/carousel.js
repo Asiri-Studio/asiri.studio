@@ -23,6 +23,17 @@ function imageLoaded() {
       if (index < totalImages) requiredCarouselHeight += img.offsetHeight + 60;
     });
 
+    anime(
+      {
+        targets: heroCarousel,
+        duration: 240,
+        elasticity: 600,
+        opacity: [0, 1],
+        easing: "linear",
+      },
+      "-=1000"
+    );
+
     carouselAnimation = anime({
       targets: heroCarousel,
       duration: 8000,
