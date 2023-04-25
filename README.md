@@ -1,2 +1,2 @@
-# www.asiri.studio
+# asiri.studio
 Asiri's website
